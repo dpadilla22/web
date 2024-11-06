@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo anime</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-container">
+    <h1>Lista de animes</h1>
+    <div class="ingresar">
+    <input id="textoInput" type="text" placeholder="Nuevo anime">
+    <button id="textoButton">+ Agregar</button>
+    </div>
+    <div id="error"></div>
+    <div class="lista">
+        <ul class="lista-tareas" id="listaTareas">
+            <li >One piece
+                <img src="https://images.vexels.com/content/223479/preview/trash-bin-icon-flat-dd5fc7.png" alt="Eliminar" class="imagen borrar">
+            </li>
+            <li >HxH
+                <img src="https://images.vexels.com/content/223479/preview/trash-bin-icon-flat-dd5fc7.png" alt="Eliminar" class="imagen borrar">
+            </li>
+            <li>mob pysho100
+                 <img src="https://images.vexels.com/content/223479/preview/trash-bin-icon-flat-dd5fc7.png" alt="Eliminar" class="imagen borrar">
+            </li>
+            <li>Jujutsu kaisen
+                <img src="https://images.vexels.com/content/223479/preview/trash-bin-icon-flat-dd5fc7.png" alt="Eliminar" class="imagen borrar">
+           </li>
+        </ul>
+    </div>
+    </div>
+    <script>
+        document.getElementById("textoButton").addEventListener("click", () => {
+            let tareaTexto = document.getElementById("textoInput").value.trim(); 
+            const errorDiv = document.getElementById("error");
+            if (tareaTexto !== "") {
+                errorDiv.style.display = "none";
+                const nuevaTarea = document.createElement("li");
+                nuevaTarea.innerHTML = `
+                    ${tareaTexto}
+                    <img src="https://images.vexels.com/content/223479/preview/trash-bin-icon-flat-dd5fc7.png" alt="Eliminar" class="imagen borrar">
+                `;
+                document.getElementById("listaTareas").appendChild(nuevaTarea); 
+                document.getElementById("textoInput").value = ""; 
+    
+                
+                nuevaTarea.querySelector('.borrar').addEventListener('click', function() {
+                    nuevaTarea.remove();
+                });
+            } else {
+                errorDiv.style.display = "block";
+                errorDiv.textContent = 'Escribe algo antes de agregar una tarea';
+            }
+        });
+    
+      
+        document.querySelectorAll('.borrar').forEach(img => {
+            img.addEventListener('click', function() {
+                img.parentElement.remove();
+            });
+        });
+    </script>
+
+  
+</body>
+</html>
